@@ -1,0 +1,20 @@
+version: "3"
+
+services:
+  frontend:
+    build: ./todo-frontend
+    container_name: frontend
+    ports:
+      - "80:80"
+    networks:
+      - todo-networks
+  backend:
+    build: ./todo-backend
+    container_name: backend
+    ports:
+      - "3001:3001"
+    networks:
+      - todo-networks
+networks:
+  todo-networks:
+    driver: bridge
