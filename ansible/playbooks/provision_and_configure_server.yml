@@ -65,7 +65,7 @@
       debug:
         var: groups['magic_hosts']
 
-    - name: Install common packages
+    - name: Install common packages 
       become: yes
       package:
         name:
