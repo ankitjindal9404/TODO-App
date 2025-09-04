@@ -98,6 +98,6 @@
       synchronize:
         src: "./"  # Relative path in your GitHub repository
         dest: "/home/ec2-user/app/"
-        mode: 
+        mode: push
         recursive: yes
       delegate_to: "{{ groups['magic_hosts'][0] }}"
