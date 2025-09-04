@@ -113,3 +113,5 @@
           - "--exclude=ansible"
           - "--exclude=.github"
       delegate_to: "{{ groups['magic_hosts'][0] }}"
+      ansible_ssh_private_key_file: "{{ ec2_ssh_key_file }}"  # Ensure SSH key is passed
+      ansible_user: ec2-user  # Ensure the user is specified
