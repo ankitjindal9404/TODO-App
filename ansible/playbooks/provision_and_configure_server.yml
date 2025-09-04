@@ -95,7 +95,9 @@
       delegate_to: "{{ groups['magic_hosts'][0] }}"
 
     - name: Copy app source code to Ec2 instance
-      win_copy:
-        src: "C:/Users/jinda/Downloads/DevOps/software_testing/TODO-App/"
+      synchronize:
+        src: "./"  # Relative path in your GitHub repository
         dest: "/home/ec2-user/app/"
+        mode: 
+        recursive: yes
       delegate_to: "{{ groups['magic_hosts'][0] }}"
