@@ -110,8 +110,9 @@
           - "--exclude=ansible"
           - "--exclude=.github"
       delegate_to: "{{ groups['magic_hosts'][0] }}"
-      ansible_ssh_private_key_file: "{{ ec2_ssh_key_file }}"  # Specify the correct SSH key
-      ansible_user: ec2-user  # Specify the user to connect as (ec2-user for Amazon Linux)
+      vars:
+        ansible_ssh_private_key_file: "{{ ec2_ssh_key_file }}"  # Specify the correct SSH key
+        ansible_user: ec2-user  # Specify the user to connect as (ec2-user for Amazon Linux)
       # with_items:
       #   - "{{ groups['magic_hosts'] }}"
       # vars:
