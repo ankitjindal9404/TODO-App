@@ -73,6 +73,7 @@
           - nodejs
           - npm
         state: present
+      delegate_to: "{{ groups['magic_hosts'][0] }}"
       # delegate_to: "{{ item }}"
       # with_items:
       #   - "{{ groups['magic_hosts'] }}"
@@ -88,6 +89,7 @@
         name: apache2
         state: started
         enabled: yes
+      delegate_to: "{{ groups['magic_hosts'][0] }}"
       # delegate_to: "{{ item }}"
       # with_items:
       #   - "{{ groups['magic_hosts'] }}"
@@ -107,6 +109,7 @@
           - "--exclude=.git"
           - "--exclude=ansible"
           - "--exclude=.github"
+      delegate_to: "{{ groups['magic_hosts'][0] }}"
       # with_items:
       #   - "{{ groups['magic_hosts'] }}"
       # vars:
