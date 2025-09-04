@@ -2,6 +2,9 @@
 - name: Provision AWS Ec2 instance and install xx
   hosts: localhost
   gather_facts: no
+  vars:
+    ansible_ssh_private_key_file: "{{ ec2_ssh_key_file }}"  # Specify the correct SSH key
+    ansible_user: ec2-user  # Specify the user to connect as (ec2-user for Amazon Linux)
 
   tasks:
     - name: Adding SSH access to security group
@@ -110,12 +113,3 @@
           - "--exclude=ansible"
           - "--exclude=.github"
       delegate_to: "{{ groups['magic_hosts'][0] }}"
-      vars:
-        ansible_ssh_private_key_file: "{{ ec2_ssh_key_file }}"  # Specify the correct SSH key
-        ansible_user: ec2-user  # Specify the user to connect as (ec2-user for Amazon Linux)
-      # with_items:
-      #   - "{{ groups['magic_hosts'] }}"
-      # vars:
-      #   ansible_ssh_private_key_file: "{{ ec2_ssh_key_file }}"
-      #   ansible_user: ec2-user
-      # when: groups["magic_hosts"] is defined and groups["magic_hosts"] | length >0
