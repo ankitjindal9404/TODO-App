@@ -1,4 +1,4 @@
-name: "Provisioning of AWS ec2 instance and configuration with Ansible"
+name: "Provisioning of ec2 instance and configuration with Ansible"
 
 on:
   push:
