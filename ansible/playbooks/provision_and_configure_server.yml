@@ -47,7 +47,7 @@
         host: "{{ ec2.instance[0].public_dns_name }}"
         port: 22
         delay: 30
-        timeout: 600
+        timeout: 300
         state: started
       when: ec2.instance is defined and ec2.instances | length > 0
     - name: Add Ec2 instance to inventory dynamically
