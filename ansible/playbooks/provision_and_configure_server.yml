@@ -93,25 +93,11 @@
         state: started
         enabled: yes
       delegate_to: "{{ groups['magic_hosts'][0] }}"
-      # delegate_to: "{{ item }}"
-      # with_items:
-      #   - "{{ groups['magic_hosts'] }}"
-      # vars:
-      #   ansible_ssh_private_key_file: "{{ ec2_ssh_key_file }}"
-      #   ansible_user: ec2-user
-      # when: groups["magic_hosts"] is defined and groups["magic_hosts"] | length >0
 
-    # - name: Copy source code
-    #   become: yes
-    #   synchronize:
-    #     src: "{{ playbook_dir }}/../../"
-    #     dest: "/opt/todo-app"
-    #     delete: yes
-    #     recursive: yes
-    #     rsync_opts:
-    #       - "--exclude=.git"
-    #       - "--exclude=ansible"
-    #       - "--exclude=.github"
-    #   delegate_to: "{{ groups['magic_hosts'][0] }}"
-    #   ansible_ssh_private_key_file: "{{ ec2_ssh_key_file }}"  # Ensure SSH key is passed
-    #   ansible_user: ec2-user  # Ensure the user is specified
+    - name: Copy app source code to Ec2 instance
+      become: yes
+      synchronize:
+        src: "C:/Users/jinda/Downloads/DevOps/software_testing/TODO-App/"
+        dest: "/home/ec2-user/app/"
+        mode: push
+      delegate_to: "{{ groups['magic_hosts'][0] }}"
