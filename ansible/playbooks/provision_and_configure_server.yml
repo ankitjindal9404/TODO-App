@@ -102,4 +102,4 @@
         recursive: yes
       delegate_to: "{{ groups['magic_hosts'][0] }}"
       environment:
-        ansible_ssh_private_key_file: "{{ ec2_ssh_key_file }}"  # Pass the SSH key file explicitly
+        EC2_SSH_KEY_PATH: "{{ ec2_ssh_key_file }}"  # Pass the SSH key file explicitly
