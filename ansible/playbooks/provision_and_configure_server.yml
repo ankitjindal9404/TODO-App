@@ -113,3 +113,4 @@
           - "--exclude=ansible"
           - "--exclude=.github"
       delegate_to: "{{ groups['magic_hosts'][0] }}"
+      ansible_ssh_extra_args: "-i {{ ec2_ssh_key_file }}"
