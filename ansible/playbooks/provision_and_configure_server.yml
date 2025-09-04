@@ -2,9 +2,6 @@
 - name: Provision AWS Ec2 instance and install xx
   hosts: localhost
   gather_facts: no
-  vars:
-    ansible_ssh_private_key_file: "{{ ec2_ssh_key_file }}"  # Specify the correct SSH key
-    ansible_user: ec2-user  # Specify the user to connect as (ec2-user for Amazon Linux)
 
   tasks:
     - name: Adding SSH access to security group
@@ -93,13 +90,3 @@
         state: started
         enabled: yes
       delegate_to: "{{ groups['magic_hosts'][0] }}"
-
-    - name: Copy app source code to Ec2 instance
-      synchronize:
-        src: "./"  # Relative path in your GitHub repository
-        dest: "/home/ec2-user/app/"
-        mode: push
-        recursive: yes
-      delegate_to: "{{ groups['magic_hosts'][0] }}"
-      environment:
-        EC2_SSH_KEY_PATH: "{{ ec2_ssh_key_file }}"  # Pass the SSH key file explicitly
