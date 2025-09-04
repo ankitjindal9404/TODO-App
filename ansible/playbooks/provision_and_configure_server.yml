@@ -47,7 +47,7 @@
         host: "{{ ec2.instance[0].public_dns_name }}"
         port: 22
         delay: 30
-        timeout: 300
+        timeout: 600
         state: started
       when: ec2.instance is defined and ec2.instances | length > 0
     - name: Add Ec2 instance to inventory dynamically
@@ -68,15 +68,18 @@
     - name: Install common packages
       become: yes
       package:
-        name: httpd
+        name:
+          - httpd
+          - nodejs
+          - npm
         state: present
-      delegate_to: "{{ item }}"
-      with_items:
-        - "{{ groups['magic_hosts'] }}"
-      vars:
-        ansible_ssh_private_key_file: "{{ ec2_ssh_key_file }}"
-        ansible_user: ec2-user
-      when: groups["magic_hosts"] is defined and groups["magic_hosts"] | length >0
+      # delegate_to: "{{ item }}"
+      # with_items:
+      #   - "{{ groups['magic_hosts'] }}"
+      # vars:
+      #   ansible_ssh_private_key_file: "{{ ec2_ssh_key_file }}"
+      #   ansible_user: ec2-user
+      # when: groups["magic_hosts"] is defined and groups["magic_hosts"] | length >0
 
   
     - name: Start and enable ensible
@@ -97,7 +100,7 @@
       become: yes
       synchronize:
         src: "{{ playbook_dir }}/../../"
-        dest: "/opt/react-app"
+        dest: "/opt/todo-app"
         delete: yes
         recursive: yes
         rsync_opts:
