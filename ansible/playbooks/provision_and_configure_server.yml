@@ -95,9 +95,7 @@
       delegate_to: "{{ groups['magic_hosts'][0] }}"
 
     - name: Copy app source code to Ec2 instance
-      become: yes
-      synchronize:
+      win_copy:
         src: "C:/Users/jinda/Downloads/DevOps/software_testing/TODO-App/"
         dest: "/home/ec2-user/app/"
-        mode: push
       delegate_to: "{{ groups['magic_hosts'][0] }}"
