@@ -1,5 +1,5 @@
 ---
-- name: Provision AWS Ec2 instance and install xx
+- name: Provision Ec2 instance and install xx
   hosts: localhost
   gather_facts: no
 
